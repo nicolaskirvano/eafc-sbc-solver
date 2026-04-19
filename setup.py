@@ -1,49 +1,43 @@
 from setuptools import setup, find_packages
-from setuptools.command.install import install
 import pathlib
 
 here = pathlib.Path(__file__).parent.resolve()
 
-VERSION = '0.0.1'
-DESCRIPTION = 'EA FC 24 SBC solver'
+VERSION = '0.1.0'
+DESCRIPTION = 'FC 26 SBC Solver — encontra o squad mais barato para SBCs do EA Sports FC 26'
 LONG_DESCRIPTION = (here / "README.md").read_text(encoding="utf-8")
 
-# Setting up
 setup(
-    # the name must match the folder name 'verysimplemodule'
-    name="eafc24-ut-players",
+    name="fc26-sbc-solver",
     version=VERSION,
-    author="Bartlomiej Niemiec",
-    author_email="<bniemiec11@gmail.com>",
+    author="Nicolas Oliveira",
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
-    url="https://github.com/bartlomiej-niemiec/fc24-sbc-solver",
+    long_description_content_type="text/markdown",
+    url="https://github.com/nicolaskirvano/fc26-sbc-solver",
     packages=find_packages(where="src"),
     install_requires=[
         "ortools",
         "pandas",
-        "sqlite3",
-        "sqlalchemy",
-        "prettytable"
-    ],  # add any additional packages that
-    # needs to be installed along with your package. Eg: 'caer'
-
+        "prettytable",
+    ],
     keywords=[
         'google or-tools',
-        'mixed-integer-programming',
         'cp-sat',
         'python',
-        'eafc24',
-        'ultimate team',
-        'sbc'
+        'fc26',
+        'ea-sports-fc',
+        'ultimate-team',
+        'sbc',
+        'squad-building-challenge',
     ],
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Development Status :: 3 - Alpha",
-        "Intended Audience :: Education",
         "Programming Language :: Python :: 3.12",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: Microsoft :: Windows",
     ],
     package_dir={"": "src"},
+    python_requires=">=3.11",
 )

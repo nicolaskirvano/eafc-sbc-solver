@@ -5,25 +5,21 @@ from data.csv.csv_utils import get_csv_content, preprocess_csv_data
 
 class DatasetSources(IntEnum):
     CSV = 1
-    DB = 2
 
 
 class DatasetFactory:
+    _DEFAULT_CSV = "csv/fc26_players.csv"
+
     @classmethod
-    def create(cls, source: DatasetSources):
-        dataset = None
+    def create(cls, source: DatasetSources = DatasetSources.CSV, csv_path: str | None = None):
         if source == DatasetSources.CSV:
-            dataset = cls._get_dataset_from_csv()
-        elif source == DatasetSources.DB:
-            pass  # TO DO
-
-        return dataset
+            return cls._get_dataset_from_csv(csv_path)
+        raise ValueError(f"Fonte de dados não suportada: {source}")
 
     @classmethod
-    def _get_dataset_from_csv(cls):
-        CSV_FILENAME = "csv/fut_players.csv"
-        CSV_FILEPATH = pathlib.Path(__file__).parent.joinpath(CSV_FILENAME)
-        dataset = get_csv_content(CSV_FILEPATH)
+    def _get_dataset_from_csv(cls, csv_path: str | None = None):
+        filename = csv_path or cls._DEFAULT_CSV
+        filepath = pathlib.Path(__file__).parent.joinpath(filename)
+        dataset = get_csv_content(filepath)
         preprocess_csv_data(dataset)
-
         return dataset

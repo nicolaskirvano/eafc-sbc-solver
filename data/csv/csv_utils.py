@@ -4,10 +4,7 @@ from data.csv.card_data_template import CardDataTemplateFactory, does_file_inclu
 
 
 def get_csv_content(filepath, delimiter=';'):
-    with_player_stats = does_file_include_player_stats(filepath)
-    names = [key for key in CardDataTemplateFactory().create(with_player_stats).keys()]
-    dtypes = {key: str for key in CardDataTemplateFactory().create(with_player_stats).keys()}
-    return pd.read_csv(filepath, delimiter=delimiter, names=names, dtype=dtypes, skiprows=[0])
+    return pd.read_csv(filepath, delimiter=delimiter, dtype=str)
 
 
 class CsvHeaders(GeneralCardData, CommonPosStats, GkPosStats):

@@ -1,5 +1,5 @@
 ortools
 pandas
-sqlite3
-sqlalchemy
 prettytable
+requests
+beautifulsoup4
